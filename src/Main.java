@@ -84,6 +84,7 @@ public class Main {
                             }
                             board[wifeY - 1][i] = "  ";
                         }
+                        wifeCount--;
                     }
                     else{
                         System.out.println("Вам не хватает жён.");
