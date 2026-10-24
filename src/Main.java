@@ -31,8 +31,8 @@ public class Main {
             }
         }
 
-        int countMuchroom = 10;
-        int countGrass = 20;
+        int countMuchroom = 8;
+        int countGrass = 25;
 
         for (int i = 0; i < countGrass; i++) {
             board[random.nextInt(sizeBoard - 1)][random.nextInt(sizeBoard)] = grass;
@@ -55,6 +55,7 @@ public class Main {
                 System.out.println(rightBlock);
             }
             System.out.println(wall);
+            System.out.println("Кол-во жизней: " + lives);
 
             board[personY - 1][personX - 1] = "  ";
             System.out.print("Ваш ход: ");
@@ -100,13 +101,18 @@ public class Main {
             for (int i = 0; i < 30; i++) {
                 System.out.println();
             }
+            if(personX > sizeBoard || personY > sizeBoard || personY <= 0 || personX <= 0){
+                System.out.println("За поле не уходим. Кто разрешил?");
+                personX = 1;
+                personY = 5;
+            }
             if (board[personY - 1][personX - 1].equals(" ")) {
                 continue;
             } else if (board[personY - 1][personX - 1].equals(grass)) {
-                count++;
+                count = count + 2;
             } else if (board[personY - 1][personX - 1].equals(muchroom)) {
                 if(task() == true){
-                    count = count + 5;
+                    count = count + 6;
                 }
                 else{
                     lives--;
@@ -133,7 +139,7 @@ public class Main {
                                 count = 0;
                                 board[4][0] = door;
                                 System.out.println("Успешно.");
-                            }else if(ans == 2 && count >= 7){
+                            }else if(ans == 2 && count >= 8){
                                 wifeCount++;
                             }
                             else if (ans == 3) {
