@@ -18,6 +18,7 @@ public class Main {
 
 
         int wifeCount = 0;
+        int winterCount = 0;
         int count = 0;
         int personY = 5;
         int personX = 1;
@@ -84,6 +85,7 @@ public class Main {
                             }
                             board[wifeY - 1][i] = "  ";
                         }
+                        wifeCount--;
                     }
                     else{
                         System.out.println("Вам не хватает жён.");
@@ -103,7 +105,6 @@ public class Main {
             } else if (board[personY - 1][personX - 1].equals(grass)) {
                 count++;
             } else if (board[personY - 1][personX - 1].equals(muchroom)) {
-                task();
                 if(task() == true){
                     count = count + 5;
                 }
@@ -153,15 +154,20 @@ public class Main {
                 }
             } else if (board[personY - 1][personX - 1].equals(bad)) {
                 restore(sizeBoard, board, countMuchroom, countGrass, personX, personY);
+                winterCount++;
                 board[personY - 1][personX - 1] = bad;
                 personX--;
 
             } else if (board[personY - 1][personX - 1].equals(door)) {
                 System.out.println("Вы свободны и вы прошли игру.");
+                System.out.println("Вам потребовалось " + winterCount + " зим.");
                 break;
             }
 
             board[personY - 1][personX - 1] = person;
+        }
+        if(lives <= 0){
+            System.out.println("Вы умерли.");
         }
     }
 
@@ -172,9 +178,6 @@ public class Main {
         String grass = "\uD83C\uDF3E";
         String person = "\uD83D\uDC68\uD83C\uDFFC\u200D\uD83C\uDF3E";
         String bad = "\uD83D\uDECF";
-        String leftBlock = " | ";
-        String rightBlock = " |";
-        String wall = " + —— + —— + —— + —— + —— + ";
         board[personY - 1][personX - 1] = "  ";
         for (int y = 1; y <= sizeBoard; y++) {
             for (int x = 1; x <= sizeBoard; x++) {
