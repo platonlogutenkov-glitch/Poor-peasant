@@ -18,6 +18,7 @@ public class Main {
 
 
         int wifeCount = 0;
+        int winterCount = 0;
         int count = 0;
         int personY = 5;
         int personX = 1;
@@ -154,11 +155,13 @@ public class Main {
                 }
             } else if (board[personY - 1][personX - 1].equals(bad)) {
                 restore(sizeBoard, board, countMuchroom, countGrass, personX, personY);
+                winterCount++;
                 board[personY - 1][personX - 1] = bad;
                 personX--;
 
             } else if (board[personY - 1][personX - 1].equals(door)) {
                 System.out.println("Вы свободны и вы прошли игру.");
+                System.out.println("Вам потребовалось " + winterCount + " зим.");
                 break;
             }
 
